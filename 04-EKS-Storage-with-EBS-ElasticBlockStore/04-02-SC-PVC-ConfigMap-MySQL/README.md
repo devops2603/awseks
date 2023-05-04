@@ -11,6 +11,10 @@
 | Deployment, Environment Variables, Volumes, VolumeMounts  | 04-mysql-deployment.yml  |
 | ClusterIP Service  | 05-mysql-clusterip-service.yml  |
 
+while crerating the storage class we have to give aws specific provisioner - ebs.csi.aws.com in the manifest file.
+Usermanagement-configmap.yml is to create a schema whenever mysql pod is created.
+
+
 ## Step-02: Create following Kubernetes manifests
 ### Create Storage Class manifest
 - https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode
@@ -24,18 +28,25 @@ kubectl apply -f kube-manifests/
 # List Storage Classes
 kubectl get sc
 
+![image](https://user-images.githubusercontent.com/115634064/236271056-41822082-41ac-4c7b-bf4c-5fc9e01a5ccd.png)
+
 # List PVC
-kubectl get pvc 
+kubectl get pvc
+
+![image](https://user-images.githubusercontent.com/115634064/236271205-758005d2-65bd-487d-8066-b97795b810c6.png)
+in the above pic, you can see the status as pending. It is waiting for the first consumer as we declared in the yml file.
 
 # List PV
 kubectl get pv
+This doesn't return anything because the persistent volume still not yet created. The persistent volume claim is waiting to create the persistent volume. Once the pod get created the PVC will crate the PV. 
+
 ```
 ### Create ConfigMap manifest
 - We are going to create a `usermgmt` database schema during the mysql pod creation time which we will leverage when we deploy User Management Microservice. 
 
 ### Create MySQL Deployment manifest
 - Environment Variables
-- Volumes
+- Volumes - First we will create the volumes in our deployment yml file and create the volume mounts to our container.
 - Volume Mounts
 
 ### Create MySQL ClusterIP Service manifest
@@ -61,6 +72,7 @@ kubectl get pods
 # List pods based on  label name
 kubectl get pods -l app=mysql
 ```
+
 
 ## Step-04: Connect to MySQL Database
 ```
