@@ -28,19 +28,22 @@ kubectl apply -f kube-manifests/
 # List Storage Classes
 kubectl get sc
 
-![image](https://user-images.githubusercontent.com/115634064/236271056-41822082-41ac-4c7b-bf4c-5fc9e01a5ccd.png)
-
 # List PVC
 kubectl get pvc
 
-![image](https://user-images.githubusercontent.com/115634064/236271205-758005d2-65bd-487d-8066-b97795b810c6.png)
-in the above pic, you can see the status as pending. It is waiting for the first consumer as we declared in the yml file.
+
 
 # List PV
 kubectl get pv
 This doesn't return anything because the persistent volume still not yet created. The persistent volume claim is waiting to create the persistent volume. Once the pod get created the PVC will crate the PV. 
 
 ```
+![image](https://user-images.githubusercontent.com/115634064/236271056-41822082-41ac-4c7b-bf4c-5fc9e01a5ccd.png)
+
+![image](https://user-images.githubusercontent.com/115634064/236271205-758005d2-65bd-487d-8066-b97795b810c6.png)
+in the above pic, you can see the status as pending. It is waiting for the first consumer as we declared in the yml file.
+
+
 ### Create ConfigMap manifest
 - We are going to create a `usermgmt` database schema during the mysql pod creation time which we will leverage when we deploy User Management Microservice. 
 
