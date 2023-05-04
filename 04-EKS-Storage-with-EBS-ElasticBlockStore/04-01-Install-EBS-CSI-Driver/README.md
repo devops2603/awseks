@@ -40,22 +40,24 @@
   - **Name:** Amazon_EBS_CSI_Driver
   - **Description:** Policy for EC2 Instances to access Elastic Block Store
   - Click on **Create Policy**
-  ![image](https://user-images.githubusercontent.com/115634064/236258976-e855edf6-13d2-4979-8db0-8f6e459dff82.png)
 
-
-## Step-03: Get the IAM role Worker Nodes using and Associate this policy to that role
+## Step-03: Get the IAM role of Worker Nodes using and Associate this policy to the EBS role that we have created above
 ```
-# Get Worker node IAM Role ARN
+# Get Worker node IAM Role ARN using the below command
 kubectl -n kube-system describe configmap aws-auth
 
 # from output check rolearn
-rolearn: arn:aws:iam::180789647333:role/eksctl-eksdemo1-nodegroup-eksdemo-NodeInstanceRole-IJN07ZKXAWNN
+rolearn: arn:aws:iam::515233793163:role/*eksctl-eksdemo1-nodegroup-eksdemo-NodeInstanceRole-1NN7YHG3FWNXX*
+
 ```
 - Go to Services -> IAM -> Roles 
 - Search for role with name **eksctl-eksdemo1-nodegroup** and open it
 - Click on **Permissions** tab
 - Click on **Attach Policies**
 - Search for **Amazon_EBS_CSI_Driver** and click on **Attach Policy**
+![image](https://user-images.githubusercontent.com/115634064/236261349-6a0afdd8-2001-4ce2-958d-a8d675634af2.png)
+![image](https://user-images.githubusercontent.com/115634064/236261568-64933ca6-42ad-403a-ab21-6d7a16bdda3b.png)
+Now what we did is attached the EBS policy to the worker node ec2 instances role so that the pods on the worked nodes can access the EBS
 
 ## Step-04: Deploy Amazon EBS CSI Driver  
 - Verify kubectl version, it should be 1.14 or later
@@ -68,5 +70,16 @@ kubectl version --client --short
 kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=master"
 
 # Verify ebs-csi pods running
+
 kubectl get pods -n kube-system
 ```
+![image](https://user-images.githubusercontent.com/115634064/236262113-ca80cd51-740e-46fb-b08b-ffaa51bdf8e4.png)
+
+
+
+
+
+
+
+
+
