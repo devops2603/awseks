@@ -1,8 +1,12 @@
 # Use RDS Database for Workloads running on AWS EKS Cluster
+![image](https://user-images.githubusercontent.com/115634064/236633178-5e92446c-0859-40fa-9cd1-4202889b0a7a.png)
 
 ## Step-01: Introduction
 - What are the problems with MySQL Pod & EBS CSI? 
 - How we are going to solve them using AWS RDS Database?
+-> Using externalname service we are going to connect to data base from the usermgmt-microservice pod. Always our database should be in private subnets. When we create a cluster automatically a VPC and subnets are created
+
+![image](https://user-images.githubusercontent.com/115634064/236633336-3e895f6b-77d7-4711-851f-3362fcd55c96.png)
 
 ## Step-02: Create RDS Database
 
@@ -31,7 +35,7 @@
   - **Description:** EKS RDS DB Subnet Group
   - **VPC:** eksctl-eksdemo1-cluster/VPC
   - **Availability Zones:** us-east-1a, us-east-1b
-  - **Subnets:** 2 subnets in 2 AZs
+  - **Subnets:** 2 subnets in 2 AZs which are private
   - Click on **Create**
 
 ### Create RDS Database 
@@ -51,8 +55,8 @@
   - **Connectivity**
     - **VPC:** eksctl-eksdemo1-cluster/VPC
     - **Additional Connectivity Configuration**
-      - **Subnet Group:** eks-rds-db-subnetgroup
-      - **Publicyly accessible:** YES (for our learning and troubleshooting - if required)
+      - **Subnet Group:** eks-rds-db-subnetgroup (this is which we have created in the above step)
+      - **Publicyly accessible:** NO (YES for our learning and troubleshooting - if required)
     - **VPC Security Group:** Create New
       - **Name:** eks-rds-db-securitygroup    
     - **Availability Zone:** No Preference
@@ -76,7 +80,7 @@ metadata:
   name: mysql
 spec:
   type: ExternalName
-  externalName: usermgmtdb.c7hldelt9xfp.us-east-1.rds.amazonaws.com
+  externalName: usermgmtdb.c7hldelt9xfp.us-east-1.rds.amazonaws.com (This we will get when we creat a RDS MySql database in the above step)
 ```
  - **Deploy Manifest**
 ```
