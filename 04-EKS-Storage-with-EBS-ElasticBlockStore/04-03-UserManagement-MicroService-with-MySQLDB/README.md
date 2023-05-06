@@ -1,5 +1,6 @@
 # Deploy UserManagement Service with MySQL Database
 
+![image](https://user-images.githubusercontent.com/115634064/236628635-ba07f651-b9c4-4f3f-ad7c-5e6dcd3c08e3.png)
 
 ## Step-01: Introduction
 - We are going to deploy a **User Management Microservice** which will connect to MySQL Database schema **usermgmt** during startup.
