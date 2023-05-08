@@ -1,4 +1,6 @@
  # AWS - Network Load Balancer - NLB
+NLB is used which does not need http or https. like smtp server etc. For NLB we need to add annotation. For NLB we get traget groups. 
+![image](https://user-images.githubusercontent.com/115634064/236885277-e814bcad-69c5-4e47-a564-dc5f28a94cb6.png)
 
 ## Step-01: Create AWS Network Load Balancer Kubernetes Manifest & Deploy
 - **04-NetworkLoadBalancer.yml**
