@@ -1,5 +1,5 @@
 # AWS - Classic Load Balancer - CLB
-
+There will no target group to classic load balancer
 ## Step-01: Create AWS Classic Load Balancer Kubernetes Manifest & Deploy
 - **04-ClassicLoadBalancer.yml**
 ```yml
