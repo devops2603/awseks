@@ -180,7 +180,7 @@ eksctl create iamserviceaccount \
   --approve
 
 
-# Replaced name, cluster and policy arn (Policy arn we took note in step-02)
+# Replaced name, cluster and policy arn (Policy arn we took note in step-02, this step will create a IAM role with the policy that we have create above and assign it to service account that we are creating below)
 eksctl create iamserviceaccount \
   --cluster=eksdemo1 \
   --namespace=kube-system \
@@ -481,7 +481,14 @@ helm uninstall aws-load-balancer-controller -n kube-system
 - [Ingress Class Documentation Reference](https://kubernetes-sigs.github.io/aws-load-balancer-controller/latest/guide/ingress/ingress_class/)
 - [Different Ingress Controllers available today](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/)
 
+![image](https://github.com/devops2603/awseks/assets/115634064/8fe0af38-c356-44b7-8d1e-4a66ece4b4c1)
+To identify to which ingress controller we have to assign our resource we use ingress class object.
 
+![image](https://github.com/devops2603/awseks/assets/115634064/6adf530e-d94b-4645-a7a5-646b111503e1)
+
+Ingress resource is nothing but its like we are going to create the application load balancer using the kubernetes manifest.
+![image](https://github.com/devops2603/awseks/assets/115634064/264fdfe6-af7a-4784-9d0b-de81a3576ebb)
+if we mention is-deafult-class: true means any ingress resource that is deployed in this kubernetes cluster will be associated with the aws load balance controller that we have installed in our previous steps. 
 ## Step-06: Review IngressClass Kubernetes Manifest
 - **File Location:** `08-01-Load-Balancer-Controller-Install/kube-manifests/01-ingressclass-resource.yaml`
 - Understand in detail about annotation `ingressclass.kubernetes.io/is-default-class: "true"`
