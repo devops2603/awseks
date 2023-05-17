@@ -1,12 +1,12 @@
 ---
 title: AWS Load Balancer Controller - Ingress Basics
+description: Learn AWS Load Balancer Controller - Ingress Basics
+---
+
 ![image](https://github.com/devops2603/awseks/assets/115634064/986d107a-8b42-4e89-b45c-cf978f006081)
 ![image](https://github.com/devops2603/awseks/assets/115634064/9ad35ebe-9706-49b5-95ad-7805d6fc8e83)
 ![image](https://github.com/devops2603/awseks/assets/115634064/596035ce-e93f-41fc-9c4c-9945c7ca2b71)
 ![image](https://github.com/devops2603/awseks/assets/115634064/a16bf1cd-78fc-420b-b732-76367dd5d669)
-
-description: Learn AWS Load Balancer Controller - Ingress Basics
----
 
 ## Step-01: Introduction
 - Discuss about the Application Architecture which we are going to deploy
